@@ -6,11 +6,13 @@ for (var i = 0; i < numberOfDrums; i++) {
     document.querySelectorAll("button")[i].addEventListener("click", function (){
         var buttonHtml = this.innerHTML;
       MakeSound(buttonHtml);
+      animatedButtons(buttonHtml)
     });    
 }
 
 document.addEventListener("keydown", function (event){
-   MakeSound(event.key)
+   MakeSound(event.key);
+   animatedButtons(event.key)
 })
 
 function MakeSound(key){
@@ -48,4 +50,15 @@ function MakeSound(key){
         default:console.log(buttonHtml);
             break;
        }
+}
+
+function animatedButtons(currentKey){
+    var activeButton = document.querySelector("."+ currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(() => {
+        activeButton.classList.remove("pressed");
+
+    }, 100);
 }
